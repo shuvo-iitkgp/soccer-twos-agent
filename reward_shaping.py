@@ -11,19 +11,19 @@ import numpy as np
 class RewardShapingConfig:
     """Configuration for dense reward shaping terms."""
 
-    alpha: float = 0.05
+    alpha: float = 0.2
     beta: float = 0.1
-    direction_coeff: float = 0.05
-    ball_touch_bonus: float = 0.05
+    direction_coeff: float = 0.01
+    ball_touch_bonus: float = 0.2
 
     max_dist: float = 30.0
     touch_threshold: float = 1.5
     touch_cooldown_steps: int = 15
 
-    proximity_clip: Tuple[float, float] = (-0.05, 0.05)
-    goal_progress_clip: Tuple[float, float] = (-0.05, 0.05)
-    direction_clip: Tuple[float, float] = (-0.05, 0.05)
-    shaping_clip: Tuple[float, float] = (-0.1, 0.1)
+    proximity_clip: Tuple[float, float] = (-0.1, 0.1)
+    goal_progress_clip: Tuple[float, float] = (-0.1, 0.1)
+    direction_clip: Tuple[float, float] = (-0.01, 0.01)
+    shaping_clip: Tuple[float, float] = (-0.3, 0.3)
 
     opponent_goal_x: float = 16.0
     opponent_goal_y: float = 0.0
@@ -75,6 +75,12 @@ class RewardShapingWrapper(gym.Wrapper):
         direction_reward = 0.0
         ball_touch_reward = 0.0
 
+        proximity_delta = None
+        goal_delta = None
+        proximity_raw = None
+        goal_progress_raw = None
+        direction_raw = None
+
         player_info = info_dict.get("player_info", {})
         ball_info = info_dict.get("ball_info", {})
 
@@ -90,12 +96,13 @@ class RewardShapingWrapper(gym.Wrapper):
                 proximity_delta = (
                     _distance(self._prev_player_pos, self._prev_ball_pos)
                     - _distance(curr_player_pos, curr_ball_pos)
-                ) / max_dist
+                ) 
 
                 goal_delta = (
                     _distance(self._prev_ball_pos, goal)
                     - _distance(curr_ball_pos, goal)
-                ) / max_dist
+                ) 
+                
 
                 proximity_raw = self.config.alpha * proximity_delta
                 goal_progress_raw = self.config.beta * goal_delta
@@ -145,6 +152,8 @@ class RewardShapingWrapper(gym.Wrapper):
         info_dict["ball_touch_reward"] = float(ball_touch_reward)
         info_dict["shaping_reward"] = float(shaping_reward)
         info_dict["shaped_reward"] = float(shaped_reward)
+        info_dict["opponent_goal_x"] = float(self.config.opponent_goal_x)
+        info_dict["opponent_goal_y"] = float(self.config.opponent_goal_y)
 
         self._debug_step_count += 1
 
@@ -154,10 +163,11 @@ class RewardShapingWrapper(gym.Wrapper):
                 f"has_player_pos={'position' in player_info} "
                 f"has_ball_pos={'position' in ball_info} "
                 f"env={float(env_reward):+.6f} "
-                f"prox_delta={(proximity_delta if self._prev_player_pos is not None and self._prev_ball_pos is not None else None)} "
-                f"goal_delta={(goal_delta if self._prev_player_pos is not None and self._prev_ball_pos is not None else None)} "
-                f"prox_raw={(proximity_raw if self._prev_player_pos is not None and self._prev_ball_pos is not None else None)} "
-                f"goal_raw={(goal_progress_raw if self._prev_player_pos is not None and self._prev_ball_pos is not None else None)} "
+                f"prox_delta={proximity_delta} "
+                f"goal_delta={goal_delta} "
+                f"prox_raw={proximity_raw} "
+                f"goal_raw={goal_progress_raw} "
+                f"dir_raw={direction_raw} "
                 f"prox_clip={proximity_reward:+.6f} "
                 f"goal_clip={goal_progress_reward:+.6f} "
                 f"dir={direction_reward:+.6f} "

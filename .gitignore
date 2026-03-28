@@ -1,7 +1,7 @@
 envs/
 ray_results/
-ceia_baseline_agent/
 data/
+ceia_baseline_agent/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
