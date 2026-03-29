@@ -3,8 +3,8 @@ ray_results/
 data/
 ceia_baseline_agent/
 my_agent_1/
-my_agent_2/
-my_agent_3/
+my_agent_2/PPO_agent/
+my_agent_3/ray_results/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
