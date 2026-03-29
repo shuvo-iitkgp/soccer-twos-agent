@@ -264,7 +264,7 @@ def build_config(num_workers: int, num_envs_per_worker: int, shaping_config: Rew
             "variation": EnvType.team_vs_policy,
             "multiagent": False,
             "single_player": False,
-            "flatten_branched": True,
+            "flatten_branched": False,
         },
         "model": {
             "vf_share_layers": True,
