@@ -77,3 +77,14 @@ To examine the baseline agent, you must extract the `ceia_baseline_agent` folder
 `python -m soccer_twos.watch -m1 example_player_agent -m2 ceia_baseline_agent`
 
 , to examine the random agent vs. the baseline agent.
+
+<!-- python -m soccer_twos.watch -m1 my_agent_2 -m2 my_agent_1 -->
+
+<!-- cd /d "D:\Georgia Tech\Spring_2026\Deep Reinforcement Learning\soccer-twos-starter"
+
+The /d flag tells Windows to change drive and directory.
+
+After that:
+
+conda create -n soccertwos python=3.8 -y
+conda activate soccertwos -->
