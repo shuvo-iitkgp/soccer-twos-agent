@@ -78,7 +78,9 @@ To examine the baseline agent, you must extract the `ceia_baseline_agent` folder
 
 , to examine the random agent vs. the baseline agent.
 
-<!-- python -m soccer_twos.watch -m1 my_agent_2 -m2 my_agent_1 -->
+<!-- python -m soccer_twos.watch -m1 my_agent_4 -m2 my_agent_2 -->
+
+<!-- python -m soccer_twos.watch -m1 my_agent_4_phase1 -m2 my_agent_2 -->
 
 <!-- cd /d "D:\Georgia Tech\Spring_2026\Deep Reinforcement Learning\soccer-twos-starter"
 
