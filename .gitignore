@@ -10,6 +10,8 @@ my_agent_4_phase1/
 my_agent_5/
 my_agent_6/
 my_agent_7/
+my_agent_8/
+notebooks/plts/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

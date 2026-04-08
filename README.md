@@ -78,6 +78,8 @@ To examine the baseline agent, you must extract the `ceia_baseline_agent` folder
 
 , to examine the random agent vs. the baseline agent.
 
+python -m soccer_twos.watch -m1 my_agent_8 -m2 example_player_agent
+
 <!-- python -m soccer_twos.watch -m1 ceia_baseline_agent -m2 my_agent_7 -->
 
 <!-- python -m soccer_twos.watch -m1 my_agent_4_phase1 -m2 my_agent_2 -->
@@ -91,6 +93,4 @@ After that:
 conda create -n soccertwos python=3.8 -y
 conda activate soccertwos -->
 
-python train_two_phase_added_defence.py --phase1-timesteps 4000 --phase2-timesteps 8000 --num-workers 2 --num-envs-per-worker 1 --experiment-name smoke_test_distance_metric
-
-python train_three_phase_curriculum.py --phase1-timesteps 2000000 --phase2-timesteps 3500000 --phase3-timesteps 3000000 --num-workers 2 --num-envs-per-worker 1 --checkpoint-every 1 --experiment-name three_phase_curriculum
+python train_three_phase_curriculum_v3.py --phase1-timesteps 4000 --phase2-timesteps 4000 --phase3-timesteps 8000 --num-workers 2 --num-envs-per-worker 1 --experiment-name ppo_curriculum_v3_full
