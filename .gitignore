@@ -11,8 +11,9 @@ my_agent_5/
 my_agent_6/
 my_agent_7/
 my_agent_8/
-notebooks/plts/
+SUBI_FC_AGENT/
 
+SUBI_FC_AGENT.zip
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
