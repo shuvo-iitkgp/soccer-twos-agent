@@ -13,7 +13,7 @@ Key contributions:
 Final performance:
 
 - vs Random: **10/10 wins**
-- vs Baseline: **9/10 wins (1 draw)**
+- vs Baseline: **10/10 wins**
 
 ---
 
