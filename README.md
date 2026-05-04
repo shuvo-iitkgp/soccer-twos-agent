@@ -64,8 +64,8 @@ Main training command:
 ```bash
 python train_three_phase_curriculum.py \
   --phase1-timesteps 2000000 \
-  --phase2-timesteps 2500000 \
-  --phase3-timesteps 2500000 \
+  --phase2-timesteps 3000000 \
+  --phase3-timesteps 3500000 \
   --num-workers 2 \
   --num-envs-per-worker 1 \
   --experiment-name final_run
